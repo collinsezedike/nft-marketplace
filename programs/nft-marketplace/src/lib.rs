@@ -18,4 +18,8 @@ pub mod nft_marketplace {
     pub fn initialize(ctx: Context<Initialize>, name: String, fee: u16) -> Result<()> {
         ctx.accounts.initialize(name, fee, &ctx.bumps)
     }
+
+    pub fn list(ctx: Context<List>, price: u32) -> Result<()> {
+        ctx.accounts.list(price, &ctx.bumps)
+    }
 }
