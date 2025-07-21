@@ -32,6 +32,7 @@ pub struct Delist<'info> {
         mut,
         associated_token::mint = lister_nft_mint,
         associated_token::authority = lister,
+        associated_token::program = token_program,
     )]
     pub lister_nft_ata: InterfaceAccount<'info, TokenAccount>,
 
@@ -46,7 +47,8 @@ pub struct Delist<'info> {
     #[account(
         mut,
         associated_token::mint = lister_nft_mint,
-        associated_token::authority = listing
+        associated_token::authority = listing,
+        associated_token::program = token_program,
     )]
     pub vault: InterfaceAccount<'info, TokenAccount>,
 
