@@ -22,4 +22,8 @@ pub mod nft_marketplace {
     pub fn list(ctx: Context<List>, price: u32) -> Result<()> {
         ctx.accounts.list(price, &ctx.bumps)
     }
+
+    pub fn delist(ctx: Context<Delist>) -> Result<()> {
+        ctx.accounts.delist()
+    }
 }

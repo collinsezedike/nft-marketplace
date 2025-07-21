@@ -2,8 +2,8 @@ use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
     metadata::{ MasterEditionAccount, Metadata, MetadataAccount },
-    token::{ transfer_checked, TransferChecked },
-    token_interface::{ Mint, TokenAccount, TokenInterface },
+    // token::{ transfer_checked, TransferChecked },
+    token_interface::{ transfer_checked, Mint, TokenAccount, TokenInterface, TransferChecked },
 };
 
 use crate::state::{ Listing, Marketplace };
