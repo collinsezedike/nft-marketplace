@@ -58,7 +58,7 @@ pub struct Delist<'info> {
 impl<'info> Delist<'info> {
     pub fn delist(&mut self) -> Result<()> {
         self.withdraw_nft()?;
-        self.close_listing()?;
+        self.close_vault()?;
         Ok(())
     }
 
@@ -88,7 +88,7 @@ impl<'info> Delist<'info> {
         Ok(())
     }
 
-    pub fn close_listing(&mut self) -> Result<()> {
+    pub fn close_vault(&mut self) -> Result<()> {
         // let cpi_program = self.associated_token_program.to_account_info();
         let cpi_program = self.token_program.to_account_info();
 
