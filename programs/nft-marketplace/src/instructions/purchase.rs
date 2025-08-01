@@ -13,7 +13,7 @@ use anchor_spl::{
     },
 };
 
-use crate::state::{ Listing, Marketplace };
+use crate::state::{ Listing, Marketplace, UserAccount };
 
 #[derive(Accounts)]
 pub struct Purchase<'info> {
@@ -22,6 +22,13 @@ pub struct Purchase<'info> {
 
     #[account(mut)]
     pub lister: SystemAccount<'info>,
+
+    #[account(
+        mut,
+        seeds = [b"user", buyer.key().as_ref()],
+        bump = buyer_user_account.bump
+    )]
+    pub buyer_user_account: Account<'info, UserAccount>,
 
     #[account(
         seeds = [b"marketplace", marketplace.name.as_str().as_bytes()],
@@ -78,6 +85,10 @@ impl<'info> Purchase<'info> {
         self.take_marketplace_fees(marketplace_fees as u64)?;
         self.pay_lister(amount_to_pay_lister as u64)?;
         self.close_vault()?;
+
+        // Increase the user's points by the marketplace points per purchase
+        self.buyer_user_account.points += self.marketplace.points_per_purchase as u32;
+
         Ok(())
     }
 
